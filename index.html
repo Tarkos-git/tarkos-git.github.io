@@ -388,16 +388,16 @@ td {
 
 </style>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+  function sendHeightToParent() {
+    var height = $('div.mini-html').height();
+    parent.postMessage({ height: height }, '*');
+  }
 
-// Send the height information to the parent page
-function sendHeightToParent() {
-  var height = document.body.scrollHeight;
-  parent.postMessage({ height: height }, '*');
-}
-
-// Call the sendHeightToParent function whenever the content changes
-// For example, after the page finishes loading or when new content is added dynamically
-window.addEventListener('load', sendHeightToParent);
-
+  // Call the sendHeightToParent function whenever the content changes
+  // For example, after the page finishes loading or when new content is added dynamically
+  $(document).ready(function() {
+    sendHeightToParent();
+  });
 </script>
